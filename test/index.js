@@ -18,14 +18,7 @@ suite('host', function() {
     subject = new Host();
   });
 
-  var port;
-  setup(function(done) {
-    emptyPort({ startPort: 60000 }, function(err, _port) {
-      port = _port;
-      done(err);
-    });
-  });
-
+  var port = 2828;
   var profile;
   setup(function(done) {
     var options = {
@@ -56,7 +49,7 @@ suite('host', function() {
 
   suite('#start', function() {
     setup(function(done) {
-      subject.start(profile.path, {}, done);
+      subject.start(profile.path, { port: port }, done);
     });
 
     test('can connect after start', function(done) {
@@ -64,10 +57,10 @@ suite('host', function() {
     });
 
     teardown(function(done) {
-      if (subject._process)
-        subject._process.on('exit', done);
-        subject._process.kill();
+      subject.stop(done);
     });
+
+
   });
 
   suite('#stop', function() {

@@ -1,6 +1,6 @@
 var fsPath = require('path'),
     fs = require('fs'),
-    spawn = require('./index').spawn,
+    spawn = require('child_process').spawn,
     debug = require('debug')('marionette-device-host');
 
 /**
@@ -30,13 +30,8 @@ Host.metadata = Object.freeze({
 });
 
 Host.prototype = {
-  /**
-   * Reference to b2g-desktop process.
-   *
-   * @type {ChildProcess}
-   * @private
-   */
-  _process: null,
+
+  port: 2828,
 
   /**
    * Starts the b2g-desktop process.
@@ -54,8 +49,21 @@ Host.prototype = {
 
     debug('start');
 
-//    mozrunner.run('adb shell stop b2g');
-//    mozrunner.run('adb shell start b2g');
+    if(options.port == 0) {
+      options.port = 2828;
+    }
+
+    this.port = options.port;
+    var adb = spawn('adb', ['forward', 'tcp:' + this.port, 'tcp:' + this.port]);
+    adb.on('close', function() {
+      callback();
+    });
+    adb.stdout.on('data', function (data) {
+      console.log('stdout: ' + data);
+    });
+    adb.stderr.on('data', function (data) {
+      console.log('stderr: ' + data);
+    });
   },
 
   /**
@@ -66,6 +74,16 @@ Host.prototype = {
   stop: function(callback) {
     debug('stop');
 
+    var adb = spawn('adb', ['forward', '--remove', 'tcp:' + this.port]);
+    adb.on('close', function() {
+      callback();
+    });
+    adb.stdout.on('data', function (data) {
+      console.log('stdout: ' + data);
+    });
+    adb.stderr.on('data', function (data) {
+      console.log('stderr: ' + data);
+    });
   }
 };
 
