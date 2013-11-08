@@ -3,6 +3,8 @@ var fsPath = require('path'),
     spawn = require('child_process').spawn,
     debug = require('debug')('marionette-device-host');
 
+const DEFAULT_PORT = 2828;
+
 /**
  * Host interface for marionette-js-runner.
  *
@@ -17,7 +19,7 @@ function Host(options) {
   if (!this.options.host)
     this.options.host = 'localhost';
   if (!this.options.port)
-    this.options.post = 2828;
+    this.options.port = DEFAULT_PORT;
 }
 
 /**
@@ -31,10 +33,10 @@ Host.metadata = Object.freeze({
 
 Host.prototype = {
 
-  port: 2828,
+  port: DEFAULT_PORT,
 
   /**
-   * Starts the b2g-desktop process.
+   * Perform adb forward.
    *
    * @param {String} profile path.
    * @param {Object} [options] settings provided by caller.
@@ -49,13 +51,16 @@ Host.prototype = {
 
     debug('start');
 
-    if(options.port == 0) {
-      options.port = 2828;
+    if(options.port == 0 || options.port === undefined) {
+      debug('port was not set. Using default.');
+      options.port = this.port;
     }
 
     this.port = options.port;
+    var port = this.port;
     var adb = spawn('adb', ['forward', 'tcp:' + this.port, 'tcp:' + this.port]);
     adb.on('close', function() {
+      debug('Set adb forward to ' + port);
       callback();
     });
     adb.stdout.on('data', function (data) {
@@ -67,15 +72,17 @@ Host.prototype = {
   },
 
   /**
-   * Stop the currently running host.
+   * Stop the adb forward.
    *
    * @param {Function} callback [Error err].
    */
   stop: function(callback) {
     debug('stop');
 
+    var port = this.port;
     var adb = spawn('adb', ['forward', '--remove', 'tcp:' + this.port]);
     adb.on('close', function() {
+      debug('Removed the forward to port ' + port);
       callback();
     });
     adb.stdout.on('data', function (data) {
