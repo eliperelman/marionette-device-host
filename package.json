@@ -1,0 +1,31 @@
+{
+  "name": "marionette-device-host",
+  "version": "0.0.1",
+  "author": "Hubert Figuiere [:hub]",
+  "description": "marionette-js-runner host for device (and emulator)",
+  "main": "index.js",
+  "keywords": [
+    "firefox os",
+    "gecko",
+    "firefox",
+    "marionette-js-runner"
+  ],
+  "dependencies": {
+    "debug": "*"
+  },
+  "devDependencies": {
+    "empty-port": "~0.0.1",
+    "mozilla-profile-builder": "~0.2.0-alpha",
+    "mocha": "~1.7",
+    "node-static": "~0.6",
+    "marionette-client": "1.0.1",
+    "marionette-js-runner": "0.3.2"
+  },
+  "license": "MIT",
+  "engine": {
+    "node": ">=0.4"
+  },
+  "scripts": {
+    "test": "make test"
+  }
+}
