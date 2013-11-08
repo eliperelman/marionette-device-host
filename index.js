@@ -50,7 +50,6 @@ Host.prototype = {
     options = options || {};
 
     debug('start');
-
     if(options.port == 0 || options.port === undefined) {
       debug('port was not set. Using default.');
       options.port = this.port;
@@ -58,7 +57,9 @@ Host.prototype = {
 
     this.port = options.port;
     var port = this.port;
-    var adb = spawn('adb', ['forward', 'tcp:' + this.port, 'tcp:' + this.port]);
+
+    var adb = spawn('adb', ['forward', 'tcp:' + this.port,
+			    'tcp:' + DEFAULT_PORT]);
     adb.on('close', function() {
       debug('Set adb forward to ' + port);
       callback();
