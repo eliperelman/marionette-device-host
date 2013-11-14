@@ -1,7 +1,7 @@
-# B2G Devicep host for marionette-js-runner
+# B2G Device host for marionette-js-runner
 
 [![Build
-Status](https://travis-ci.org/mozilla-b2g/marionette-host-environment.png)](https://travis-ci.org/mozilla-b2g/marionette-host-environment)
+Status](https://travis-ci.org/mozilla-b2g/marionette-device-host.png)](https://travis-ci.org/mozilla-b2g/marionette-device-host)
 
 A complete target environment for marionette using device or emulator (adb).
 
@@ -10,6 +10,7 @@ A complete target environment for marionette using device or emulator (adb).
 Copyright (c) 2013 Mozilla Foundation
 
 Contributors: Hubert Figuiere <hub@mozilla.com>
+              Sahaja James Lal <jlal@mozilla.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a
 copy of this software and associated documentation files (the "Software"),
