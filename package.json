@@ -1,6 +1,6 @@
 {
   "name": "marionette-device-host",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Hubert Figuiere [:hub]",
   "description": "marionette-js-runner host for device (and emulator)",
   "main": "index.js",

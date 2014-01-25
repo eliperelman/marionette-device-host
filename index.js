@@ -65,10 +65,10 @@ Host.prototype = {
       callback();
     });
     adb.stdout.on('data', function (data) {
-      console.log('stdout: ' + data);
+      console.error('(start) stdout: ' + data);
     });
     adb.stderr.on('data', function (data) {
-      console.log('stderr: ' + data);
+      console.error('(start) stderr: ' + data);
     });
   },
 
@@ -87,10 +87,10 @@ Host.prototype = {
       callback();
     });
     adb.stdout.on('data', function (data) {
-      console.log('stdout: ' + data);
+      console.error('(stop) stdout: ' + data);
     });
     adb.stderr.on('data', function (data) {
-      console.log('stderr: ' + data);
+      console.error('(stop) stderr: ' + data);
     });
   }
 };
