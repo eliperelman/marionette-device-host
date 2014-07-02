@@ -1,6 +1,6 @@
 {
   "name": "marionette-device-host",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "Hubert Figuiere [:hub]",
   "description": "marionette-js-runner host for device (and emulator)",
   "main": "index.js",
@@ -19,7 +19,9 @@
     "mocha": "~1.7",
     "node-static": "~0.6",
     "marionette-client": "1.0.1",
-    "marionette-js-runner": "0.3.2"
+    "marionette-js-runner": "0.3.2",
+    "tcp-port-used": "^0.1.2",
+    "lodash": "^2.4.1"
   },
   "license": "MIT",
   "engine": {

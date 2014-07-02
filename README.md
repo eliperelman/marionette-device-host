@@ -9,8 +9,11 @@ A complete target environment for marionette using device or emulator (adb).
 
 Copyright (c) 2013 Mozilla Foundation
 
-Contributors: Hubert Figuiere <hub@mozilla.com>
-              Sahaja James Lal <jlal@mozilla.com>
+Contributors:
+
+Hubert Figuiere <hub@mozilla.com>
+Sahaja James Lal <jlal@mozilla.com>
+Eli Perelman <eli@mozilla.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a
 copy of this software and associated documentation files (the "Software"),
